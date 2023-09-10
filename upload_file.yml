@@ -1,0 +1,35 @@
+---
+swagger: "2.0"
+info:
+  title: "File Upload API"
+  description: "API for uploading files"
+  version: "1.0.0"
+
+paths:
+  /upload_file:
+    post:
+      tags:
+        - "File Upload"
+      summary: "Upload File"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - in: formData
+          name: file
+          type: file
+          description: "File to be uploaded"
+          required: true
+      responses:
+        200:
+          description: "File uploaded successfully"
+          schema:
+            type: object
+            properties:
+              status_code:
+                type: integer
+              description:
+                type: string
+              data:
+                type: string
+        400:
+          description: "Bad request - Invalid file or no file provided"
